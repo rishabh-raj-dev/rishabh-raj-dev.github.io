@@ -132,6 +132,33 @@ h4{font-size:1.08rem;line-height:1.3}
 .hero-media figcaption b{color:var(--ink);font-weight:500}
 @media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.hero-media{max-width:420px}}
 
+/* hero terminal: a short typed session; always dark, like a real terminal */
+.hero h1{font-size:clamp(2.2rem,4.4vw,3.5rem)}
+.term{--t-bg:#14171b;--t-bar:#1c2026;--t-line:#2a2f37;--t-ink:#d9dbd6;--t-dim:#7f8590;--t-prompt:#8dbbe0;--t-key:#86cdca;--t-str:#e2b56b;--t-year:#8fcaa1;
+  background:var(--t-bg);border:1px solid var(--t-line);border-radius:var(--r-lg);box-shadow:0 1px 0 rgba(0,0,0,.08),0 22px 48px -24px rgba(10,12,16,.55);overflow:hidden;min-width:0}
+.term-bar{display:flex;align-items:center;gap:7px;padding:11px 14px;background:var(--t-bar);border-bottom:1px solid var(--t-line);font:400 .72rem/1 var(--mono);color:var(--t-dim)}
+.term-bar i{width:10px;height:10px;border-radius:50%;background:#3a3f48}
+.term-bar span{margin-left:8px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.term-replay{font:inherit;color:var(--t-dim);background:none;border:1px solid var(--t-line);border-radius:6px;padding:4px 8px;cursor:pointer;opacity:0;transition:opacity .3s,color .2s}
+.term.done .term-replay{opacity:1}
+.term-replay:hover{color:var(--t-ink)}
+.term-body{margin:0;padding:18px 20px 20px;font:400 .84rem/1.62 var(--mono);color:var(--t-ink)}
+.term-body .ln{display:block;white-space:pre-wrap;overflow-wrap:anywhere}
+.term-body .out{color:var(--t-dim);margin-bottom:6px}
+.term-body b{font-weight:500;color:var(--t-prompt)}
+.term-body s{text-decoration:none;color:var(--t-key)}
+.term-body u{text-decoration:none;color:var(--t-str)}
+.term-body em{font-style:normal;color:var(--t-year)}
+.term-body .out:not(:has(s)){color:var(--t-ink)}
+.caret{display:inline-block;width:.58em;height:1.05em;vertical-align:-.17em;background:var(--t-prompt);margin-left:1px;animation:blink 1.05s steps(1) infinite}
+.typing .caret{animation:none}
+@keyframes blink{50%{opacity:0}}
+.term.anim .ln{visibility:hidden}
+.term.anim .ln.on{visibility:visible}
+@media (max-width:860px){.term{max-width:560px}}
+@media (max-width:420px){.term-body{font-size:.76rem;padding:14px 14px 16px}}
+@media (prefers-reduced-motion:reduce){.caret{animation:none}}
+
 /* ---------- glance strip ---------- */
 .glance{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface)}
 .glance .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}

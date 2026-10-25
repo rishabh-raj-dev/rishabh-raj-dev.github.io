@@ -25,6 +25,56 @@
     var nav = document.querySelector('.nav');
     var onScroll = function () { if (nav) nav.classList.toggle('scrolled', window.scrollY > 8); };
     onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+    /* hero terminal: types each command, then reveals its output. Lines keep their space
+       while hidden, so nothing below moves. Reduced motion shows the finished session. */
+    var term = document.querySelector('[data-term]');
+    if (term) {
+      var lines = [].slice.call(term.querySelectorAll('.ln'));
+      var caret = term.querySelector('.caret');
+      var timers = [];
+      var later = function (fn, ms) { timers.push(setTimeout(fn, ms)); };
+      var finish = function () {
+        lines.forEach(function (l) { l.classList.add('on'); });
+        term.querySelectorAll('[data-type]').forEach(function (s) { s.textContent = s.getAttribute('data-type'); });
+        lines[lines.length - 1].appendChild(caret);
+        term.classList.remove('typing'); term.classList.add('done');
+      };
+      var play = function () {
+        timers.forEach(clearTimeout); timers = [];
+        term.classList.add('anim'); term.classList.remove('done');
+        lines.forEach(function (l) { l.classList.remove('on'); });
+        term.querySelectorAll('[data-type]').forEach(function (s) {
+          if (!s.hasAttribute('data-type') || !s.getAttribute('data-type')) s.setAttribute('data-type', s.textContent);
+          s.textContent = '';
+        });
+        var t = 450;
+        lines.forEach(function (l, i) {
+          var typed = l.querySelector('[data-type]');
+          if (typed) {
+            var text = typed.getAttribute('data-type');
+            later(function () { l.classList.add('on'); l.appendChild(caret); term.classList.add('typing'); }, t);
+            t += 380;
+            for (var k = 1; k <= text.length; k++) {
+              (function (k) { later(function () { typed.textContent = text.slice(0, k); }, t); })(k);
+              t += 45 + Math.round(Math.random() * 55);
+            }
+            later(function () { term.classList.remove('typing'); }, t);
+            t += 260;
+          } else if (i === lines.length - 1) {
+            later(finish, t);
+          } else {
+            later(function () { l.classList.add('on'); }, t);
+            t += 140 + l.textContent.split('\n').length * 70;
+          }
+        });
+      };
+      term.querySelectorAll('[data-type]').forEach(function (s) { s.setAttribute('data-type', s.textContent); });
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) finish(); else play();
+      var rb = term.querySelector('[data-term-replay]');
+      if (rb) rb.addEventListener('click', play);
+    }
+
     var mb = document.querySelector('[data-menu]');
     if (mb && nav) {
       mb.addEventListener('click', function () {
