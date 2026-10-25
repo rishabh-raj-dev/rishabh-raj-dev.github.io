@@ -1,6 +1,6 @@
 # rishabh-raj-dev.github.io
 
-Professional portfolio of Rishabh Raj, frontend and mobile engineer in fintech.
+Professional portfolio of Rishabh Raj, frontend and mobile engineer in fintech. No music content here.
 The music lives on its own site (the shaanzayin repo).
 Live at https://rishabh-raj-dev.github.io/
 
@@ -11,7 +11,7 @@ GitHub Pages serves this repository from `main`, root folder (`.nojekyll` turns 
 
 ```
 index.html                  home page (all sections)
-projects/<slug>/index.html  case studies: xohra-realm, habito
+projects/<slug>/index.html  case studies: mechamind, homepathy, habito
 404.html                    not-found page
 assets/css/site.css         design tokens (light + dark), layout, components
 assets/js/site.js           theme toggle, nav, active section, reveal

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MechaMind Labs platform · Rishabh Raj</title>
+<meta name="description" content="How Rishabh Raj started and helped build the MechaMind Labs learning platform: LMS, workshops, Razorpay payments, certificates and an admin console on Next.js and Supabase.">
+<link rel="canonical" href="https://rishabh-raj-dev.github.io/projects/mechamind/">
+<meta name="theme-color" content="#f3efe6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MechaMind Labs platform · case study">
+<meta property="og:description" content="A learning platform for a robotics education company.">
+<meta property="og:url" content="https://rishabh-raj-dev.github.io/projects/mechamind/">
+<meta property="og:image" content="https://rishabh-raj-dev.github.io/assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../../assets/fonts/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<script src="../../assets/js/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" id="top">
+  <div class="wrap">
+    <a class="brand" href="../../">Rishabh Raj<span>Frontend · Fintech</span></a>
+    <ul id="menu">
+      <li><a href="../../#profile">Profile</a></li>
+      <li><a href="../../#story">Story</a></li>
+      <li><a href="../../#work">Work</a></li>
+      <li><a href="../../#projects">Projects</a></li>
+      <li><a href="../../#contact">Contact</a></li>
+    </ul>
+    <div class="nav-tools">
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+      <button class="icon-btn menu-btn" type="button" data-menu aria-controls="menu" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="../../">Home</a> / <a href="../../#projects">Projects</a> / MechaMind Labs</nav>
+  <header class="case-head">
+    <h1>MechaMind Labs platform</h1>
+    <div class="meta"><span class="status st-live">Live site</span><span class="dates">Jul 2025 – present · Team of about six</span></div>
+    <p class="lede">The learning platform behind MechaMind Labs, a robotics education company. I made the first commit in July 2025 and have contributed 187 of its 551 commits since, alongside a small team. It sells and delivers courses, runs workshop registrations, takes payments and issues certificates.</p>
+  </header>
+  <div class="case-grid">
+    <article class="case">
+      <figure class="shot"><div class="ph"><img src="../../assets/img/mechamind-home-1280.webp" srcset="../../assets/img/mechamind-home-720.webp 720w, ../../assets/img/mechamind-home-1280.webp 1280w" sizes="(max-width:900px) 92vw, 760px" width="1280" height="592" decoding="async" alt="MechaMind Labs home page: the headline Build Real Robots, Become an Industry-Ready Robotics Engineer, with an Explore Learning Tracks button"></div><figcaption>Home page, live at mechamindlabs.com</figcaption></figure>
+
+      <h2>What it does</h2>
+      <ul>
+        <li>A public site for learning tracks, courses, workshops, seminars, projects and a blog.</li>
+        <li>An LMS: learner accounts, enrolled courses with chapters and lessons, a course video player, progress, submissions and certificates with a public verification page.</li>
+        <li>Workshop and cohort registration with Razorpay payments and coupons.</li>
+        <li>An admin console for courses, lessons, enrolments, workshops, registrations, notifications and support.</li>
+      </ul>
+
+      <h2>What I built</h2>
+      <p>The repository is shared, so this is the part that is mine, read from my own commits:</p>
+      <ul>
+        <li>The first version of the site: the Next.js app, home page sections, about, contact, pricing and the legal pages.</li>
+        <li>Admin and LMS API routes in the App Router, and the admin layout and login.</li>
+        <li>The course video player in the LMS.</li>
+        <li>The Razorpay integration for paid content.</li>
+        <li>Middleware that protects the admin and learner areas.</li>
+        <li>E-mail notifications through the Gmail API and SMTP (service account and app-password paths), plus newsletter and workshop notification endpoints.</li>
+      </ul>
+
+      <h2>How it is built</h2>
+      <dl class="stack">
+        <dt>App</dt><dd>Next.js App Router, React, TypeScript, Framer Motion.</dd>
+        <dt>Data</dt><dd>Supabase (Postgres, auth helpers, storage), with row-level security policies maintained in SQL migrations.</dd>
+        <dt>Payments</dt><dd>Razorpay.</dd>
+        <dt>Content</dt><dd>TipTap rich-text editor for the blog and course content; PDF rendering for course material and certificates.</dd>
+        <dt>Mail</dt><dd>Gmail API with a Google service account, SMTP and Resend.</dd>
+        <dt>Deploy</dt><dd>Vercel, with a GitHub Actions workflow for preview deployments.</dd>
+      </dl>
+
+      <h2>Status and limits</h2>
+      <div class="limits"><ul>
+        <li>This is team work. The biggest share of commits belongs to other developers; the list above covers only what I wrote.</li>
+        <li>The code is in a private repository, so there is no public code link.</li>
+        <li>I haven't published traffic, revenue or learner numbers.</li>
+      </ul></div>
+    </article>
+    <aside><dl>
+      <dt>Status</dt><dd>Live</dd>
+      <dt>Dates</dt><dd>First commit Jul 2025 · active through Oct 2026</dd>
+      <dt>Role</dt><dd>Founding developer · 187 of 551 commits</dd>
+      <dt>Links</dt><dd><a class="chip" href="https://www.mechamindlabs.com/" target="_blank" rel="noopener">mechamindlabs.com</a></dd>
+      <dt>Stack</dt><dd>Next.js · TypeScript · Supabase · Razorpay · NextAuth · TipTap · Gmail API · Vercel</dd>
+    </dl></aside>
+  </div>
+  <div class="next-proj"><a href="../../#projects">← All projects</a><a href="../homepathy/">Homepathy →</a></div>
+</div>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <span>© 2026 Rishabh Raj · Mumbai</span>
+    <span><a href="../../">Home</a> · hand-built, no trackers</span>
+  </div>
+</footer>
+</body>
+</html>

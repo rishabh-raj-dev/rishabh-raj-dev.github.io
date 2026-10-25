@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homepathy · Rishabh Raj</title>
+<meta name="description" content="How Rishabh Raj built Homepathy, an online homeopathy consultation platform: doctor booking, Razorpay payments with server-side verification, and LiveKit video consultations.">
+<link rel="canonical" href="https://rishabh-raj-dev.github.io/projects/homepathy/">
+<meta name="theme-color" content="#f3efe6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Homepathy · case study">
+<meta property="og:description" content="Book, pay, and see a doctor over video.">
+<meta property="og:url" content="https://rishabh-raj-dev.github.io/projects/homepathy/">
+<meta property="og:image" content="https://rishabh-raj-dev.github.io/assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../../assets/fonts/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<script src="../../assets/js/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" id="top">
+  <div class="wrap">
+    <a class="brand" href="../../">Rishabh Raj<span>Frontend · Fintech</span></a>
+    <ul id="menu">
+      <li><a href="../../#profile">Profile</a></li>
+      <li><a href="../../#story">Story</a></li>
+      <li><a href="../../#work">Work</a></li>
+      <li><a href="../../#projects">Projects</a></li>
+      <li><a href="../../#contact">Contact</a></li>
+    </ul>
+    <div class="nav-tools">
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+      <button class="icon-btn menu-btn" type="button" data-menu aria-controls="menu" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="../../">Home</a> / <a href="../../#projects">Projects</a> / Homepathy</nav>
+  <header class="case-head">
+    <h1>Homepathy</h1>
+    <div class="meta"><span class="status st-live">Live site</span><span class="dates">Mar 2025 – Apr 2026 · Lead developer</span></div>
+    <p class="lede">An online homeopathy consultation platform. Patients find a doctor, book a slot, pay, and join a video consultation in the browser. Doctors and admins get their own logins. I was the lead developer, with 50 of the project's 69 commits; two other developers contributed the rest.</p>
+  </header>
+  <div class="case-grid">
+    <article class="case">
+      <h2>What it does</h2>
+      <ul>
+        <li>Doctor listings with filters, doctor profiles and treatment categories.</li>
+        <li>Booking with patient details, then Razorpay checkout.</li>
+        <li>Video consultations in the browser, in a private room for each appointment.</li>
+        <li>Separate sign-in for patients and doctors, and a protected admin area.</li>
+        <li>An admin panel for doctors, appointments, patients and settings, plus a blog CMS with categories.</li>
+      </ul>
+
+      <h2>How it is built</h2>
+      <dl class="stack">
+        <dt>App</dt><dd>Next.js App Router, React, TypeScript, react-hook-form with Zod validation, Radix UI.</dd>
+        <dt>Data</dt><dd>Supabase tables for doctors, appointments, patients, payments, blog posts and categories.</dd>
+        <dt>Video</dt><dd>LiveKit. The server mints an access token scoped to one room with a 30-minute lifetime, so a token stops working once the consultation window is over.</dd>
+        <dt>Payments</dt><dd>Razorpay. The server recomputes the HMAC-SHA256 signature of <code>order_id|payment_id</code> with the secret and rejects any mismatch before the appointment is confirmed.</dd>
+        <dt>Auth</dt><dd>NextAuth and Firebase Authentication; doctor-based authentication; middleware-protected admin routes.</dd>
+      </dl>
+
+      <h2>The hard part</h2>
+      <p>Making payment and video trustworthy without trusting the browser. The client only ever receives a payment result and a short-lived room token. Whether a payment is valid, and who may enter which room for how long, is decided on the server.</p>
+
+      <h2>Status and limits</h2>
+      <div class="limits"><ul>
+        <li>The code is in a private repository, so there is no public code link.</li>
+        <li>I haven't published usage or consultation numbers.</li>
+        <li>The live site may have changed since my last commit in April 2026.</li>
+      </ul></div>
+    </article>
+    <aside><dl>
+      <dt>Status</dt><dd>Live</dd>
+      <dt>Dates</dt><dd>Mar 2025 – Apr 2026</dd>
+      <dt>Role</dt><dd>Lead developer · 50 of 69 commits</dd>
+      <dt>Links</dt><dd><a class="chip" href="https://homepathy.in/" target="_blank" rel="noopener">homepathy.in</a></dd>
+      <dt>Stack</dt><dd>Next.js · TypeScript · Supabase · LiveKit · Razorpay · NextAuth · Firebase Auth · Zod</dd>
+    </dl></aside>
+  </div>
+  <div class="next-proj"><a href="../mechamind/">← MechaMind Labs</a><a href="../habito/">Habito →</a></div>
+</div>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <span>© 2026 Rishabh Raj · Mumbai</span>
+    <span><a href="../../">Home</a> · hand-built, no trackers</span>
+  </div>
+</footer>
+</body>
+</html>
