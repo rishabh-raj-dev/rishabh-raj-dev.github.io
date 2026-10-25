@@ -56,25 +56,6 @@
     } else {
       document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
     }
-
-    /* Spotify click-to-play: nothing from Spotify loads until a visitor presses play */
-    document.querySelectorAll('[data-spotify]').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var track = b.closest('.track');
-        var open = track.querySelector('.embed');
-        if (open) { open.remove(); b.setAttribute('aria-expanded', 'false'); return; }
-        var box = document.createElement('div');
-        box.className = 'embed';
-        var f = document.createElement('iframe');
-        f.src = 'https://open.spotify.com/embed/' + b.getAttribute('data-spotify') + '?utm_source=generator&theme=0';
-        f.title = 'Spotify player: ' + (b.getAttribute('data-title') || 'track');
-        f.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
-        f.loading = 'lazy';
-        box.appendChild(f);
-        track.appendChild(box);
-        b.setAttribute('aria-expanded', 'true');
-      });
-    });
   });
   doc.classList.add('js');
 })();
