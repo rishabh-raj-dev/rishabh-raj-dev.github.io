@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Habito · Rishabh Raj</title>
+<meta name="description" content="Habito, a React Native and Expo habit tracker by Rishabh Raj: streaks, local reminders, progress charts and data export.">
+<link rel="canonical" href="https://rishabh-raj-dev.github.io/projects/habito/">
+<meta name="theme-color" content="#f3efe6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Habito · case study">
+<meta property="og:description" content="A React Native and Expo habit tracker.">
+<meta property="og:url" content="https://rishabh-raj-dev.github.io/projects/habito/">
+<meta property="og:image" content="https://rishabh-raj-dev.github.io/assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../../assets/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<script src="../../assets/js/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" id="top">
+  <div class="wrap">
+    <a class="brand" href="../../">Rishabh Raj<span>Fintech · Shaan Zayin</span></a>
+    <ul id="menu">
+      <li><a href="../../#profile">Profile</a></li>
+      <li><a href="../../#story">Story</a></li>
+      <li><a href="../../#work">Work</a></li>
+      <li><a href="../../#projects">Projects</a></li>
+      <li><a href="../../#music">Music</a></li>
+      <li><a href="../../#contact">Contact</a></li>
+    </ul>
+    <div class="nav-tools">
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+      <button class="icon-btn menu-btn" type="button" data-menu aria-controls="menu" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="../../">Home</a> / <a href="../../#projects">Projects</a> / Habito</nav>
+  <header class="case-head">
+    <h1>Habito, a habit tracker</h1>
+    <div class="meta"><span class="status st-code">Code on GitHub</span><span class="dates">Mar 2025 · Solo project</span></div>
+    <p class="lede">A cross-platform habit tracker in React Native and Expo. You create habits on a daily, weekly or monthly rhythm, check them off, watch your streaks on a chart, and get a local reminder when it's time.</p>
+  </header>
+  <div class="case-grid">
+    <article class="case">
+      <h2>What it does</h2>
+      <ul>
+        <li>Create, edit and track daily, weekly or monthly habits, each with its own icon and colour.</li>
+        <li>Streaks and progress charts for every habit.</li>
+        <li>Customisable local reminders through Expo Notifications.</li>
+        <li>A daily motivational quote, onboarding for first launch, and light, dark or system theme.</li>
+        <li>Export and import of habit data for backups.</li>
+      </ul>
+
+      <h2>How it is built</h2>
+      <dl class="stack">
+        <dt>App</dt><dd>React Native with Expo and TypeScript; React Native Paper for Material components; Reanimated for motion.</dd>
+        <dt>State</dt><dd>Redux Toolkit, with one slice for habits and one for app settings.</dd>
+        <dt>Storage</dt><dd>A storage service over AsyncStorage persists the store on the device.</dd>
+        <dt>Navigation</dt><dd>React Navigation: a root stack for onboarding and forms, bottom tabs for Home, Progress, a central Add button and Settings.</dd>
+        <dt>Charts</dt><dd>react-native-chart-kit on react-native-svg.</dd>
+      </dl>
+
+      <h2>The structure</h2>
+      <p>Screens, components, hooks, navigation, services, store, theme, types and utils each live in their own folder. Notifications and storage sit behind small services instead of inside screens, and colours and spacing come from one theme module, so the light and dark themes stay consistent.</p>
+
+      <h2>Status and limits</h2>
+      <div class="limits"><ul>
+        <li>The code is public on GitHub. I haven't published the app to the Play Store or App Store.</li>
+        <li>The repository is named <code>niyam-it</code>; the app inside it is Habito.</li>
+        <li>Data stays on the device. There is no account or sync between devices.</li>
+        <li>There are no screenshots or tests in the repository yet.</li>
+      </ul></div>
+    </article>
+    <aside><dl>
+      <dt>Status</dt><dd>Code on GitHub</dd>
+      <dt>Dates</dt><dd>29 Mar 2025 (3 commits)</dd>
+      <dt>Role</dt><dd>Solo</dd>
+      <dt>Code</dt><dd><a class="chip" href="https://github.com/rishabh-raj-dev/niyam-it" target="_blank" rel="noopener">niyam-it</a></dd>
+      <dt>Stack</dt><dd>React Native · Expo · TypeScript · Redux Toolkit · React Navigation · Paper · AsyncStorage</dd>
+    </dl></aside>
+  </div>
+  <div class="next-proj"><a href="../xohra-realm/">← XOHRA REALM</a><a href="../../#projects">All projects →</a></div>
+</div>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <span>© 2026 Rishabh Raj · Mumbai</span>
+    <span><a href="../../">Home</a> · hand-built, no trackers</span>
+  </div>
+</footer>
+</body>
+</html>
