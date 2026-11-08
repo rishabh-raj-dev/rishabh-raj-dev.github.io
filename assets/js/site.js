@@ -106,6 +106,85 @@
     } else {
       document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
     }
+
+    /* stack line: two copies side by side so the CSS loop is seamless */
+    var tk = document.querySelector('[data-ticker]');
+    if (tk) tk.innerHTML += tk.innerHTML;
+
+    /* spotlight cards: the light follows the pointer */
+    document.querySelectorAll('.role, .proj, .else a, .glance .cell').forEach(function (el) {
+      el.classList.add('spot');
+      el.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+
+    motion();
   });
+
+  /* scroll choreography (GSAP + ScrollTrigger). Without them, or with reduced motion, every
+     element is simply in its final place. */
+  function motion() {
+    var g = window.gsap, ST = window.ScrollTrigger;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) doc.classList.add('reduce');
+    if (!g || !ST || reduce) return;
+    g.registerPlugin(ST);
+
+    /* hero: words of the headline rise in, then the rest */
+    var h1 = document.querySelector('.hero h1');
+    if (h1) {
+      h1.setAttribute('aria-label', h1.textContent);
+      splitWords(h1);
+      g.from(h1.querySelectorAll('.wd > span'), { yPercent: 115, duration: 1.1, ease: 'expo.out', stagger: .035, delay: .1 });
+      g.from(['.hero .eyebrow', '.hero .lede', '.hero .btns', '.hero .term'], { y: 26, opacity: 0, duration: 1, ease: 'power3.out', stagger: .1, delay: .35 });
+      g.to('.hero > .wrap', { yPercent: -12, opacity: .2, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+    }
+
+    /* section titles */
+    document.querySelectorAll('.sec-head h2').forEach(function (h) {
+      h.setAttribute('aria-label', h.textContent);
+      splitWords(h);
+      g.from(h.querySelectorAll('.wd > span'), { yPercent: 115, duration: 1, ease: 'expo.out', stagger: .05, scrollTrigger: { trigger: h, start: 'top 85%' } });
+    });
+
+    /* story: the timeline fills as you read down it */
+    var fill = document.querySelector('[data-story-fill]');
+    if (fill) g.to(fill, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: '.story', start: 'top 70%', end: 'bottom 70%', scrub: .4 } });
+
+    /* primary buttons lean toward the pointer */
+    if (window.matchMedia('(pointer: fine)').matches) {
+      document.querySelectorAll('.btn.primary').forEach(function (b) {
+        var x = g.quickTo(b, 'x', { duration: .4, ease: 'power3.out' }), y = g.quickTo(b, 'y', { duration: .4, ease: 'power3.out' });
+        b.addEventListener('pointermove', function (e) {
+          var r = b.getBoundingClientRect();
+          x((e.clientX - r.left - r.width / 2) * .25); y((e.clientY - r.top - r.height / 2) * .35);
+        });
+        b.addEventListener('pointerleave', function () { x(0); y(0); });
+      });
+    }
+  }
+
+  /* wraps each word in two spans (the outer clips, the inner moves); the text itself is unchanged.
+     Inline markup like <em> keeps its words, each wrapped inside it. */
+  function splitWords(el) {
+    el.classList.add('split');
+    (function walk(node) {
+      [].slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          n.textContent.split(/( +)/).forEach(function (part) {
+            if (!part) return;
+            if (/^ +$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            var o = document.createElement('span'); o.className = 'wd'; o.setAttribute('aria-hidden', 'true');
+            var i = document.createElement('span'); i.textContent = part; o.appendChild(i); frag.appendChild(o);
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1) walk(n);
+      });
+    })(el);
+  }
   doc.classList.add('js');
 })();

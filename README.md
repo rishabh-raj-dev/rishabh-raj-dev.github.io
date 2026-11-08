@@ -14,7 +14,9 @@ index.html                  home page (all sections)
 projects/<slug>/index.html  case studies: mechamind, homepathy, habito
 404.html                    not-found page
 assets/css/site.css         design tokens (light + dark), layout, components
-assets/js/site.js           theme toggle, nav, active section, reveal
+assets/js/site.js           theme toggle, nav, active section, reveal, spotlight cards, GSAP motion
+assets/js/field.js          hero background: instanced WebGL2 bars like market depth, coloured from the theme tokens
+assets/vendor/              GSAP 3.12.5 + ScrollTrigger (the page works without them and with reduced motion)
 assets/fonts/               self-hosted Newsreader and IBM Plex (SIL Open Font License)
 assets/img/                 photos and screenshots (WebP), og.jpg for link previews
 ```
